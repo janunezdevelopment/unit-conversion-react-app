@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  background-color: white;
+}
+
+/* #conversion-area {
+
+} */
+
+#result {
+  border: 1px solid gray;
+  width: 10rem;
+  height: 3rem;
+}
