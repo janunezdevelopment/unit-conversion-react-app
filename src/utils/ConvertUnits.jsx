@@ -1,61 +1,6 @@
-// Conversion factors to SI base unit for each category.
-// Temperature is handled separately (non-linear formulas).
+import staticData from "../staticData.json";
 
-const factors = {
-  // Length → meters
-  length: {
-    mm: 0.001,
-    cm: 0.01,
-    m: 1,
-    km: 1000,
-    in: 0.0254,
-    ft: 0.3048,
-    yd: 0.9144,
-    mi: 1609.344,
-  },
-  // Mass → kilograms
-  mass: {
-    mg: 0.000001,
-    g: 0.001,
-    kg: 1,
-    t: 1000,
-    oz: 0.02834952,
-    lb: 0.45359237,
-  },
-  // Area → square meters
-  area: {
-    mm2: 0.000001,
-    cm2: 0.0001,
-    m2: 1,
-    km2: 1000000,
-    in2: 0.00064516,
-    ft2: 0.09290304,
-    yd2: 0.83612736,
-    ac: 4046.8564224,
-    ha: 10000,
-  },
-  // Volume → liters
-  volume: {
-    ml: 0.001,
-    L: 1,
-    m3: 1000,
-    tsp: 0.00492892,
-    tbsp: 0.01478676,
-    fl_oz: 0.02957353,
-    cup: 0.2365882,
-    pt: 0.4731765,
-    qt: 0.9463529,
-    gal: 3.785412,
-  },
-};
-
-const imperialToMetricDefaults = {
-  length: { from: "ft", to: "m" },
-  mass: { from: "lb", to: "kg" },
-  temperature: { from: "F", to: "C" },
-  area: { from: "ft2", to: "m2" },
-  volume: { from: "gal", to: "L" },
-};
+const { factors, imperialToMetricDefaults } = staticData;
 
 // Convert temperature between C, F, K
 function convertTemperature(value, fromUnit, toUnit) {

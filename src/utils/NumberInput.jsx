@@ -22,8 +22,9 @@ function NumberInput({ value = "", onChange }) {
       type="text"
       value={inputValue}
       onChange={handleChange}
-      placeholder="Only numbers allowed"
+      placeholder="Type value here"
       inputMode="decimal"
+      className="value-result-container"
     />
   );
 }
