@@ -7,7 +7,7 @@ function NumberInput({ value = "", onChange }) {
   const handleChange = (e) => {
     const val = e.target.value;
 
-    if (val === "" || /^-?\d*\.?\d*$/.test(val)) {
+    if (val === "" || /^-?\d*\.?\d{0,2}$/.test(val)) {
       if (onChange) {
         onChange(val);
         return;

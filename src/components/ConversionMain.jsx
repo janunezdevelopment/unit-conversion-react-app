@@ -1,6 +1,4 @@
 import { useState } from "react";
-import Select from "react-select";
-import makeAnimated from "react-select/animated";
 import NumberInput from "../utils/NumberInput";
 import ConvertUnits from "../utils/convertUnits";
 import staticData from "../staticData.json";
@@ -26,7 +24,7 @@ function ConversionMain() {
     }
     try {
       const converted = ConvertUnits(inputValue, from, to, type);
-      setResult(converted.toFixed(4));
+      setResult(converted.toFixed(2));
     } catch (error) {
       setResult(error.message);
     }
@@ -61,29 +59,43 @@ function ConversionMain() {
 
   return (
     <main>
-      <Select
-        options={conversionTypeOptions}
-        value={conversionTypeOptions.find((o) => o.value === conversionType)}
-        onChange={handleTypeChange}
-      />
+      <select
+        value={conversionType}
+        onChange={(e) => handleTypeChange({ value: e.target.value })}
+      >
+        {conversionTypeOptions.map((o) => (
+          <option key={o.value} value={o.value}>
+            {o.label}
+          </option>
+        ))}
+      </select>
       <div className="conversion-area">
-        <div className="input">
+        <div className="input-area">
           <NumberInput value={value} onChange={handleInputChange} />
-          <Select
-            options={unitOptions}
-            value={unitOptions.find((o) => o.value === fromUnit)}
-            onChange={handleFromUnitChange}
-          />
+          <select
+            value={fromUnit}
+            onChange={(e) => handleFromUnitChange({ value: e.target.value })}
+          >
+            {unitOptions.map((o) => (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            ))}
+          </select>
         </div>
         <span>=</span>
-        <div className="output">
+        <div className="output-area">
           <div className="value-result-container">{result}</div>
-          <Select
-            options={unitOptions}
-            value={unitOptions.find((o) => o.value === toUnit)}
-            onChange={handleToUnitChange}
-            // styles={}
-          />
+          <select
+            value={toUnit}
+            onChange={(e) => handleToUnitChange({ value: e.target.value })}
+          >
+            {unitOptions.map((o) => (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
     </main>
