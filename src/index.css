@@ -64,7 +64,7 @@ body {
   text-align: center;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100dvh;
   width: 100%;
   gap: 5rem;
   position: relative;
