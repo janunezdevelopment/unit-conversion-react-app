@@ -11,7 +11,7 @@
 
   --font-family: "Space Grotesk", sans-serif;
   --font-size-large: 2rem;
-  --font-size-small: 1.2rem;
+  --font-size-small: 1rem;
 
   --coffee-bean-color: #120d1d;
   --smoky-rose-color: #8f6a71;
@@ -47,10 +47,12 @@
   height: 100vh;
   width: 100vw;
   gap: 5rem;
+  position: relative;
   background:
     radial-gradient(circle at 20% 15%, #9a93c933 0%, #9a93c900 35%),
     radial-gradient(circle at 82% 82%, #70659240 0%, #70659200 42%),
-    linear-gradient(135deg, var(--bg-dark), var(--bg-light));
+    linear-gradient(135deg, #0b0813f2, #171126f2),
+    url("./images/ruler.jpg") center / cover no-repeat;
   font-family: var(--font-family);
 }
 
@@ -90,21 +92,24 @@ h1 {
 
 main,
 .conversion-area,
-.input,
-.output,
+.input-area,
+.output-area,
 .value-result-container {
   display: flex;
   align-items: center;
 }
 
 main,
-.input,
-.output {
+.input-area,
+.output-area {
   flex-direction: column;
 }
 
-.input,
-.output,
+.input-area,
+.output-area {
+  width: 100%;
+}
+
 .value-result-container {
   justify-content: center;
 }
@@ -143,11 +148,19 @@ select {
   box-shadow:
     inset 0 1px 0 #efeaf83d,
     0 8px 18px #0b081340;
-  font-size: inherit;
+  font-size: var(--font-size-small);
   color: var(--cream-color);
   transition:
     border-color 180ms ease,
     box-shadow 180ms ease;
+}
+
+select:hover {
+  border-color: var(--vintage-lavender-color);
+  box-shadow:
+    inset 0 1px 0 #efeaf83d,
+    0 8px 18px #0b081340,
+    0 12px 28px #0b08134d;
 }
 
 select:focus {
@@ -159,18 +172,41 @@ select:focus {
     0 10px 24px #0b08134d;
 }
 
+select:hover {
+  border-color: var(--periwinkle-color);
+  box-shadow:
+    inset 0 1px 0 #efeaf83d,
+    0 0 12px #c9c3ee66,
+    0 0 28px #c9c3ee33;
+}
+
 select option {
   color: var(--cream-color);
   background: transparent;
   background-color: #171126cc;
+  border-radius: var(--border-radius);
 }
 
-.input,
-.output {
+.input-area,
+.output-area {
   color: var(--periwinkle-color);
   padding: var(--section-padding);
   border-radius: calc(var(--card-radius) - 8px);
   background: linear-gradient(180deg, #efeaf80d, #efeaf805);
+}
+
+input {
+  font-variant-numeric: tabular-nums;
+}
+
+input,
+input::placeholder {
+  font-size: var(--font-size-small);
+  color: var(--cream-color);
+}
+
+input::placeholder {
+  color: var(--soft-periwinkle-color);
 }
 
 .value-result-container {
@@ -183,4 +219,6 @@ select option {
   background: linear-gradient(145deg, #efeaf812, #efeaf806);
   backdrop-filter: blur(9px);
   color: var(--cream-color);
+  overflow-x: auto;
+  white-space: nowrap;
 }

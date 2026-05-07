@@ -70,7 +70,7 @@ function ConversionMain() {
         ))}
       </select>
       <div className="conversion-area">
-        <div className="input">
+        <div className="input-area">
           <NumberInput value={value} onChange={handleInputChange} />
           <select
             value={fromUnit}
@@ -84,7 +84,7 @@ function ConversionMain() {
           </select>
         </div>
         <span>=</span>
-        <div className="output">
+        <div className="output-area">
           <div className="value-result-container">{result}</div>
           <select
             value={toUnit}
