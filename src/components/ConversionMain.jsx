@@ -59,7 +59,11 @@ function ConversionMain() {
 
   return (
     <main>
+      <label htmlFor="conversion-type" className="visually-hidden">
+        Conversion type
+      </label>
       <select
+        id="conversion-type"
         value={conversionType}
         onChange={(e) => handleTypeChange({ value: e.target.value })}
       >
@@ -72,7 +76,11 @@ function ConversionMain() {
       <div className="conversion-area">
         <div className="input-area">
           <NumberInput value={value} onChange={handleInputChange} />
+          <label htmlFor="from-unit" className="visually-hidden">
+            From unit
+          </label>
           <select
+            id="from-unit"
             value={fromUnit}
             onChange={(e) => handleFromUnitChange({ value: e.target.value })}
           >
@@ -85,8 +93,19 @@ function ConversionMain() {
         </div>
         <span>=</span>
         <div className="output-area">
-          <div className="value-result-container">{result}</div>
+          <div
+            className="value-result-container"
+            aria-live="polite"
+            aria-atomic="true"
+            aria-label="Conversion result"
+          >
+            {result}
+          </div>
+          <label htmlFor="to-unit" className="visually-hidden">
+            To unit
+          </label>
           <select
+            id="to-unit"
             value={toUnit}
             onChange={(e) => handleToUnitChange({ value: e.target.value })}
           >
