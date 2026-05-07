@@ -66,7 +66,7 @@ body {
   justify-content: center;
   height: 100dvh;
   width: 100%;
-  gap: 5rem;
+  gap: 4rem;
   position: relative;
   background:
     linear-gradient(to bottom, #0b0813f2 0%, #0b081300 6%),
@@ -139,6 +139,7 @@ main,
 }
 
 main {
+  width: 95%;
   gap: 2rem;
   padding: 1rem 0.5rem;
   border: var(--border-width) solid #c9c3ee3d;
@@ -150,9 +151,9 @@ main {
 }
 
 .conversion-area {
-  justify-content: space-between;
-  gap: 1rem;
-
+  width: 98%;
+  justify-content: center;
+  gap: 0.3rem;
   font-size: var(--font-size-small);
 }
 
@@ -205,10 +206,9 @@ select option {
 
 .input-area,
 .output-area {
-  color: var(--periwinkle-color);
-  padding: var(--section-padding);
   border-radius: calc(var(--card-radius) - 8px);
   background: linear-gradient(180deg, #efeaf80d, #efeaf805);
+  color: var(--periwinkle-color);
 }
 
 input {
@@ -223,6 +223,11 @@ input::placeholder {
 
 input::placeholder {
   color: var(--soft-periwinkle-color);
+}
+
+span {
+  color: var(--cream-color);
+  font-size: var(--font-size-large);
 }
 
 .value-result-container {
