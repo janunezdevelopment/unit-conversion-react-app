@@ -38,17 +38,41 @@
 
 /* General Styling */
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  background-color: var(--bg-dark);
+}
+
 #root {
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  width: 100%;
   gap: 5rem;
   position: relative;
   background:
+    linear-gradient(to bottom, #0b0813f2 0%, #0b081300 6%),
+    linear-gradient(to left, #0b0813f2 0%, #0b081300 4%),
+    linear-gradient(to top, #0b0813f2 0%, #0b081300 6%),
+    linear-gradient(to right, #0b0813f2 0%, #0b081300 4%),
     radial-gradient(circle at 20% 15%, #9a93c933 0%, #9a93c900 35%),
     radial-gradient(circle at 82% 82%, #70659240 0%, #70659200 42%),
     linear-gradient(135deg, #0b0813f2, #171126f2),
@@ -156,11 +180,11 @@ select {
 }
 
 select:hover {
-  border-color: var(--vintage-lavender-color);
+  border-color: var(--periwinkle-color);
   box-shadow:
     inset 0 1px 0 #efeaf83d,
-    0 8px 18px #0b081340,
-    0 12px 28px #0b08134d;
+    0 0 12px #c9c3ee66,
+    0 0 28px #c9c3ee33;
 }
 
 select:focus {
@@ -168,16 +192,8 @@ select:focus {
   border-color: var(--periwinkle-color);
   box-shadow:
     inset 0 1px 0 #efeaf852,
-    0 0 0 2px #c9c3ee33,
+    0 0 0 3px #c9c3eeaa,
     0 10px 24px #0b08134d;
-}
-
-select:hover {
-  border-color: var(--periwinkle-color);
-  box-shadow:
-    inset 0 1px 0 #efeaf83d,
-    0 0 12px #c9c3ee66,
-    0 0 28px #c9c3ee33;
 }
 
 select option {
