@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-function NumberInput({ value = "", onChange }) {
+function NumberInput({ id = "input-value", value = "", onChange }) {
   const [internalValue, setInternalValue] = useState("");
   const inputValue = onChange ? value : internalValue;
 
@@ -42,6 +42,7 @@ function NumberInput({ value = "", onChange }) {
 
   return (
     <input
+      id={id}
       type="text"
       value={formatWithCommas(inputValue)}
       onChange={handleChange}

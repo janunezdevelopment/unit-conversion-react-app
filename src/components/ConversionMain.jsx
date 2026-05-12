@@ -76,7 +76,14 @@ function ConversionMain() {
       </select>
       <div className="conversion-area">
         <div className="input-area">
-          <NumberInput value={value} onChange={handleInputChange} />
+          <label htmlFor="input-value" className="visually-hidden">
+            Value to convert
+          </label>
+          <NumberInput
+            id="input-value"
+            value={value}
+            onChange={handleInputChange}
+          />
           <label htmlFor="from-unit" className="visually-hidden">
             From unit
           </label>
@@ -92,10 +99,11 @@ function ConversionMain() {
             ))}
           </select>
         </div>
-        <span>=</span>
+        <span aria-hidden="true">=</span>
         <div className="output-area">
           <div
             className="value-result-container"
+            role="status"
             aria-live="polite"
             aria-atomic="true"
             aria-label="Conversion result"
