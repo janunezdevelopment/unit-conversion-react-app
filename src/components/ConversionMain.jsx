@@ -66,6 +66,7 @@ function ConversionMain() {
         id="conversion-type"
         value={conversionType}
         onChange={(e) => handleTypeChange({ value: e.target.value })}
+        className="first-select"
       >
         {conversionTypeOptions.map((o) => (
           <option key={o.value} value={o.value}>
