@@ -384,17 +384,19 @@ span {
 }
 
 .history-delete-btn {
-  padding: 0.35rem 0.65rem;
+  min-height: 3rem;
+  padding: 0.7rem 1.2rem;
   border: var(--border-width) solid #9a4e40;
   border-radius: var(--border-radius);
   background: linear-gradient(145deg, #6b443066, #4a2e1866);
   color: var(--natural-wood);
-  font-size: 0.9em;
+  font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
 }
 
+.swap-btn,
 .save-history-btn {
-  margin-top: var(--gap-sm);
   min-width: clamp(10rem, 24vw, 14rem);
   height: clamp(2.4rem, 5vh, 3.2rem);
   padding: 0 var(--gap-sm);
@@ -415,6 +417,22 @@ span {
     transform 180ms ease;
 }
 
+.swap-btn {
+  min-width: clamp(2.8rem, 8vw, 3.4rem);
+  width: clamp(2.8rem, 8vw, 3.4rem);
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swap-btn-icon {
+  width: clamp(1.25rem, 3vw, 1.5rem);
+  height: clamp(1.25rem, 3vw, 1.5rem);
+  display: block;
+}
+
+.swap-btn:hover,
 .save-history-btn:hover {
   border-color: var(--light-oak);
   box-shadow:
@@ -424,6 +442,7 @@ span {
   transform: translateY(-1px);
 }
 
+.swap-btn:focus-visible,
 .save-history-btn:focus-visible {
   outline: none;
   border-color: var(--light-oak);
@@ -431,4 +450,11 @@ span {
     inset 0 1px 0 #dcc6b052,
     0 0 0 3px #b8945eaa,
     0 10px 24px #0f0a064d;
+}
+
+.save-history-alert {
+  margin-top: var(--gap-xs);
+  color: var(--light-oak);
+  font-size: var(--font-size-small);
+  font-weight: 600;
 }

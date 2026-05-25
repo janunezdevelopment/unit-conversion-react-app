@@ -3,6 +3,7 @@ import NumberInput from "../utils/NumberInput";
 import HistoryPanel from "./HistoryPanel";
 import ConvertUnits from "../utils/convertUnits";
 import staticData from "../staticData.json";
+import swapIcon from "../images/swap-icon.svg";
 
 const { unitOptionsByType, defaultUnits, conversionTypeOptions } = staticData;
 const HISTORY_LIMIT = 50;
@@ -11,6 +12,7 @@ function ConversionMain() {
   const [conversionType, setConversionType] = useState("length");
   const [value, setValue] = useState("");
   const [result, setResult] = useState("");
+  const [saveAlert, setSaveAlert] = useState("");
   const [fromUnit, setFromUnit] = useState(defaultUnits.length.from);
   const [toUnit, setToUnit] = useState(defaultUnits.length.to);
   const [history, setHistory] = useState(() => {
@@ -65,6 +67,12 @@ function ConversionMain() {
   const handleToUnitChange = (selected) => {
     setToUnit(selected.value);
     handleConvert(value, fromUnit, selected.value, conversionType);
+  };
+
+  const handleSwapUnits = () => {
+    setFromUnit(toUnit);
+    setToUnit(fromUnit);
+    handleConvert(value, toUnit, fromUnit, conversionType);
   };
 
   const handleReuseEntry = (entry) => {
@@ -165,14 +173,51 @@ function ConversionMain() {
         </div>
         <button
           type="button"
+          className="swap-btn"
+          onClick={handleSwapUnits}
+          aria-label="Swap from and to units"
+        >
+          <img
+            className="swap-btn-icon"
+            src={swapIcon}
+            alt=""
+            aria-hidden="true"
+          />
+        </button>
+        <button
+          type="button"
           className="save-history-btn"
           onClick={() => {
+            const normalizedInput = String(value).trim();
+            const normalizedResult = String(result).trim();
+
+            if (!normalizedInput || !normalizedResult) {
+              setSaveAlert("");
+              return;
+            }
+
+            const isDuplicate = history.some(
+              (entry) =>
+                String(entry.input).trim() === normalizedInput &&
+                String(entry.fromUnit).trim() === fromUnit &&
+                String(entry.toUnit).trim() === toUnit &&
+                String(entry.result).trim() === normalizedResult &&
+                String(entry.conversionType).trim() === conversionType,
+            );
+
+            if (isDuplicate) {
+              setSaveAlert("This calculation is already saved.");
+              return;
+            }
+
+            setSaveAlert("");
+
             const newEntry = {
               id: Date.now(), // unique identifier
-              input: value,
+              input: normalizedInput,
               fromUnit: fromUnit,
               toUnit: toUnit,
-              result: result,
+              result: normalizedResult,
               conversionType: conversionType,
               timestamp: new Date().toLocaleString(),
             };
@@ -189,6 +234,11 @@ function ConversionMain() {
         >
           Save for later
         </button>
+        {saveAlert && (
+          <p className="save-history-alert" role="alert" aria-live="assertive">
+            {saveAlert}
+          </p>
+        )}
       </main>
 
       <HistoryPanel

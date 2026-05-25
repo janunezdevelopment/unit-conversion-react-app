@@ -1,4 +1,9 @@
-function HistoryPanel({ history, onReuseEntry, onClearHistory }) {
+function HistoryPanel({
+  history,
+  onReuseEntry,
+  onDeleteEntry,
+  onClearHistory,
+}) {
   const hasHistory = history.length > 0;
 
   return (
@@ -29,13 +34,22 @@ function HistoryPanel({ history, onReuseEntry, onClearHistory }) {
                   {entry.conversionType} - {entry.timestamp}
                 </span>
               </div>
-              <button
-                type="button"
-                className="history-reuse-btn"
-                onClick={() => onReuseEntry(entry)}
-              >
-                Reuse
-              </button>
+              <div className="history-actions">
+                <button
+                  type="button"
+                  className="history-reuse-btn"
+                  onClick={() => onReuseEntry(entry)}
+                >
+                  Reuse
+                </button>
+                <button
+                  type="button"
+                  className="history-delete-btn"
+                  onClick={() => onDeleteEntry(entry.id)}
+                >
+                  Delete
+                </button>
+              </div>
             </li>
           ))}
         </ul>
