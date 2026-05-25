@@ -13,6 +13,7 @@ function ConversionMain() {
   const [value, setValue] = useState("");
   const [result, setResult] = useState("");
   const [saveAlert, setSaveAlert] = useState("");
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [fromUnit, setFromUnit] = useState(defaultUnits.length.from);
   const [toUnit, setToUnit] = useState(defaultUnits.length.to);
   const [history, setHistory] = useState(() => {
@@ -75,6 +76,12 @@ function ConversionMain() {
     handleConvert(value, toUnit, fromUnit, conversionType);
   };
 
+  const handleClearValues = () => {
+    setValue("");
+    setResult("");
+    setSaveAlert("");
+  };
+
   const handleReuseEntry = (entry) => {
     setConversionType(entry.conversionType);
     setFromUnit(entry.fromUnit);
@@ -86,6 +93,13 @@ function ConversionMain() {
       entry.toUnit,
       entry.conversionType,
     );
+
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(max-width: 425px)").matches
+    ) {
+      setIsHistoryOpen(false);
+    }
   };
 
   const handleClearHistory = () => {
@@ -171,19 +185,28 @@ function ConversionMain() {
             </select>
           </div>
         </div>
-        <button
-          type="button"
-          className="swap-btn"
-          onClick={handleSwapUnits}
-          aria-label="Swap from and to units"
-        >
-          <img
-            className="swap-btn-icon"
-            src={swapIcon}
-            alt=""
-            aria-hidden="true"
-          />
-        </button>
+        <div className="quick-action-row">
+          <button
+            type="button"
+            className="clear-values-btn"
+            onClick={handleClearValues}
+          >
+            Clear
+          </button>
+          <button
+            type="button"
+            className="swap-btn"
+            onClick={handleSwapUnits}
+            aria-label="Swap from and to units"
+          >
+            <img
+              className="swap-btn-icon"
+              src={swapIcon}
+              alt=""
+              aria-hidden="true"
+            />
+          </button>
+        </div>
         <button
           type="button"
           className="save-history-btn"
@@ -241,13 +264,40 @@ function ConversionMain() {
         )}
       </main>
 
-      <HistoryPanel
-        history={history}
-        conversionTypeOptions={conversionTypeOptions}
-        onReuseEntry={handleReuseEntry}
-        onDeleteEntry={handleDeleteHistoryEntry}
-        onClearHistory={handleClearHistory}
+      <button
+        type="button"
+        className="history-menu-btn"
+        onClick={() => setIsHistoryOpen((previous) => !previous)}
+        aria-label={isHistoryOpen ? "Close history" : "Open history"}
+        aria-expanded={isHistoryOpen}
+        aria-controls="history-panel"
+      >
+        <span className="history-menu-icon" aria-hidden="true">
+          <span className="history-menu-line" />
+          <span className="history-menu-line" />
+          <span className="history-menu-line" />
+        </span>
+      </button>
+
+      <button
+        type="button"
+        className={`history-drawer-backdrop${isHistoryOpen ? " is-open" : ""}`}
+        onClick={() => setIsHistoryOpen(false)}
+        aria-label="Close history panel"
       />
+
+      <div
+        id="history-panel"
+        className={`history-panel-container${isHistoryOpen ? " is-open" : ""}`}
+      >
+        <HistoryPanel
+          history={history}
+          conversionTypeOptions={conversionTypeOptions}
+          onReuseEntry={handleReuseEntry}
+          onDeleteEntry={handleDeleteHistoryEntry}
+          onClearHistory={handleClearHistory}
+        />
+      </div>
     </>
   );
 }
