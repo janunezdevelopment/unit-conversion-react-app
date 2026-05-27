@@ -44,9 +44,9 @@ function HistoryPanel({
   const hasFilteredHistory = filteredHistory.length > 0;
 
   return (
-    <section className="history-panel" aria-label="Calculation history">
+    <section className="history-panel" aria-label="Saved history">
       <div className="history-header">
-        <h2>Calculation History</h2>
+        <h2>Saved History</h2>
         {hasHistory && (
           <button
             type="button"
