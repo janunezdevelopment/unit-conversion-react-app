@@ -47,7 +47,7 @@ function NumberInput({ id = "input-value", value = "", onChange }) {
       value={formatWithCommas(inputValue)}
       onChange={handleChange}
       placeholder="Type value"
-      inputMode="decimal"
+      inputMode="text"
       className="value-result-container"
     />
   );

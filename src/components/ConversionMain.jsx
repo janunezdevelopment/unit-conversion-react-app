@@ -253,6 +253,8 @@ function ConversionMain() {
               "calculationHistory",
               JSON.stringify(updatedHistory),
             );
+            setValue("");
+            setResult("");
           }}
         >
           Save for later
